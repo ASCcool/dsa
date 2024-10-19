@@ -1,1 +1,3 @@
-This repository contains notes and code related to Data Structures and Algorithms (DSA) topics
+# Data Structures and Algorithms (DSA) Repository
+
+Welcome to the **Data Structures and Algorithms (DSA)** repository! This repository contains comprehensive notes, code implementations, and useful resources to help you learn and practice key DSA concepts.
