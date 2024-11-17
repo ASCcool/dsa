@@ -87,7 +87,10 @@ def is_bst_in_order_traversal_check(node):
     return _check(node, [None])
 
 def search(root, key):
-    # Complexity of search is O(h) which can be O(log n) in best case / balanced BST or O(n) / skewed BST
+    """
+    Time complexity of search is O(h) which can be O(log n) in best case or O(n) in worst case
+    Space complexity of search is again O(h) which depends on max recursion depth, again h
+    """
     if root is None:
         return 
     else:
@@ -97,6 +100,21 @@ def search(root, key):
             return search(root.right, key)
         else:
             return search(root.left, key)
+
+def search_iterative(root, key):
+    """
+    Iterative search for a key in a Binary Search Tree
+    Time complexity is O(h) and space complexity is O(1)
+    """
+    current = root
+    while current:
+        if current.value == key:  # Key found
+            return current
+        elif key > current.value:  # Key is greater, move to right subtree
+            current = current.right
+        else:  # Key is smaller, move to left subtree
+            current = current.left
+    return None  # Key not found
 
 # Example usage:
 if __name__ == "__main__":
