@@ -116,6 +116,24 @@ def search_iterative(root, key):
             current = current.left
     return None  # Key not found
 
+def insert_node(root, key):
+    # Time complexity is O(h) and space complexity is O(1) as no recursion
+    new = TreeNode(key)
+    prev = None
+    while root:
+        prev = root
+        if root.value == key:
+            return
+        elif key > root.value:
+            root = root.right
+        else:
+            root = root.left
+    if key > prev.value:
+        prev.right = new
+    else:
+        prev.left = new
+    return new
+
 # Example usage:
 if __name__ == "__main__":
     # Construct a sample tree
@@ -126,10 +144,25 @@ if __name__ == "__main__":
     root.left.right = TreeNode(7)
     root.right.right = TreeNode(20)
 
+    """ 
+    Tree structure
+          10
+         /  \
+        5    15
+       / \     \
+      2   7     20
+    """
+
     # Check if the tree is a BST
     print("The tree is a BST:", is_bst(root))
     print("The tree is a BST:", is_bst_in_order_traversal_check(root))
+    
+    # Searching for a particular key
     key = 20
     result = search(root, key)
     if result:
         print(f"Searched key {key} found at node: {result}")
+    
+    # Insert a new node
+    insert_node(root, 19)   
+    in_order(root)
