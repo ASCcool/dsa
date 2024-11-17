@@ -87,6 +87,7 @@ def is_bst_in_order_traversal_check(node):
     return _check(node, [None])
 
 def search(root, key):
+    # Complexity of search is O(h) which can be O(log n) in best case / balanced BST or O(n) / skewed BST
     if root is None:
         return 
     else:
