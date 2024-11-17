@@ -49,7 +49,7 @@ def insertion(arr, n):
 
 
 # Not adaptive, Unstable, Average and best - O(n*log n) and worst - O(n^2),
-# in-place so no extra space and worst better for small arrays
+# In-place so no extra space and works better for small arrays
 def quicksort(arr, low, high):
     def partition(arr, low, high):
         pivot = arr[low]
