@@ -20,22 +20,22 @@ class TreeNode:
     def pre_order(node):
         if node:
             print(node.value, end=" ")  # Visit root
-            TreeNode.pre_order(node.left)       # Traverse left subtree
-            TreeNode.pre_order(node.right)      # Traverse right subtree
+            TreeNode.pre_order(node.left)  # Traverse left subtree
+            TreeNode.pre_order(node.right)  # Traverse right subtree
 
     @staticmethod
     def in_order(node):
         if node:
-            TreeNode.in_order(node.left)        # Traverse left subtree
-            print(node.value, end=" ") # Visit root
-            TreeNode.in_order(node.right)       # Traverse right subtree
+            TreeNode.in_order(node.left)  # Traverse left subtree
+            print(node.value, end=" ")  # Visit root
+            TreeNode.in_order(node.right)  # Traverse right subtree
 
     @staticmethod
     def post_order(node):
         if node:
-            TreeNode.post_order(node.left)      # Traverse left subtree
-            TreeNode.post_order(node.right)     # Traverse right subtree
-            print(node.value, end=" ") # Visit root
+            TreeNode.post_order(node.left)  # Traverse left subtree
+            TreeNode.post_order(node.right)  # Traverse right subtree
+            print(node.value, end=" ")  # Visit root
 
     @staticmethod
     def is_bst(node, min_value=float('-inf'), max_value=float('inf')):
@@ -72,6 +72,7 @@ class TreeNode:
         Returns:
             bool: True if the tree is a BST, False otherwise.
         """
+
         # Helper function for in-order traversal and validation
         def _check(node, last_visited):
             if not node:
@@ -137,15 +138,50 @@ class TreeNode:
                 root = root.right
             else:
                 root = root.left
+        print("Found prev:", prev.value)
         if key > prev.value:
             prev.right = new
         else:
             prev.left = new
         return new
 
+    @staticmethod
+    def get_inorder_predecessor(root):
+        # Inorder predecessor is nothing but the rightmost element of the left subtree
+        root = root.left
+        while root.right:
+            root = root.right
+        return root
+
+    @staticmethod
+    def delete_node(root, value):
+        """
+        Replace with inorder predecessor ipre, preferably a leaf node
+        Instead of deleting the node directly, copy the value from and delete the ipre node
+        Time and space complexity are both O(h)
+        """
+        if root is None:
+            return None
+        if root.left is None and root.right is None:
+            # Leaf node, simply delete it
+            del root
+            return None
+        if value > root.value:
+            root.right = TreeNode.delete_node(root.right, value)
+            return root
+        elif value < root.value:
+            root.left = TreeNode.delete_node(root.left, value)
+            return root
+        else:
+            ipre = TreeNode.get_inorder_predecessor(root)
+            print(f"ipre of {root.value} is {ipre.value}")
+            root.value = ipre.value
+            root.left = TreeNode.delete_node(root.left, ipre.value)
+            return root
+
 
 if __name__ == "__main__":
-    
+
     # Construct a sample tree
     root = TreeNode(10)
     root.left = TreeNode(5)
@@ -174,5 +210,20 @@ if __name__ == "__main__":
         print(f"Searched key {key} found at node: {result}")
 
     # Insert a new node
-    TreeNode.insert_node(root, 19)
+    key = 4
+    TreeNode.insert_node(root, key)
     TreeNode.in_order(root)
+    print("\n")
+
+    # Delete a node
+    key = 5
+    replaced = TreeNode.delete_node(root, key)
+    print(f"Node that replaced {key} is {replaced.value}")
+    TreeNode.in_order(root)
+    print("\n")
+
+    key = 10
+    replaced = TreeNode.delete_node(root, key)
+    print(f"Node that replaced {key} is {replaced.value}")
+    TreeNode.in_order(root)
+    print("\n")
