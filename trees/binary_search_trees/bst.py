@@ -86,6 +86,17 @@ def is_bst_in_order_traversal_check(node):
     # Use a mutable object (list) to track the last visited node value
     return _check(node, [None])
 
+def search(root, key):
+    if root is None:
+        return 
+    else:
+        if root.value == key:
+            return root
+        elif key > root.value:
+            return search(root.right, key)
+        else:
+            return search(root.left, key)
+
 # Example usage:
 if __name__ == "__main__":
     # Construct a sample tree
@@ -99,3 +110,7 @@ if __name__ == "__main__":
     # Check if the tree is a BST
     print("The tree is a BST:", is_bst(root))
     print("The tree is a BST:", is_bst_in_order_traversal_check(root))
+    key = 20
+    result = search(root, key)
+    if result:
+        print(f"Searched key {key} found at node: {result}")
