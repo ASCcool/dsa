@@ -22,6 +22,25 @@ def moveZerosToStart(nums):
     
     return nums
 
+# Given an array of 0s, 1s and 2s, sort it such that 0s, then 1s and then 2s appear left to right
+# Input [2,1,1,0,0] ==> Output [0,0,1,1,2]
+def ternary_separator(colors):
+    current, start, end = 0, 0, len(colors)-1
+    # start tracks 0, current tracks 1, end tracks 2
+    while current <= end:
+      if colors[current] == 0:
+        # swap current with start and increment both
+        colors[current], colors[start] = colors[start], colors[current]
+        start += 1
+        current += 1
+      elif colors[current] == 1:
+        # no need to swap 1, it takes care of itself
+        current += 1
+      else:
+        colors[current], colors[end] = colors[end], colors[current]
+        end -= 1
+    return colors
+
 # Given a sorted array, find a pair that sums up to a target
 def twoSum(nums, target):
     i, j = 0, len(nums)-1
