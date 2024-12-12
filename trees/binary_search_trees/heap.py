@@ -25,6 +25,7 @@ def heapify(arr, n, i):
     if largest != i:
         # swap arr[largest] and arr[i]
         arr[largest], arr[i] = arr[i], arr[largest]
+        # ensure that all levels below largest are also sorted
         heapify(arr, n, largest)
 
 
