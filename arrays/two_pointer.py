@@ -2,7 +2,7 @@
 Two pointer problems are usually O(n) algorithms, except 3Sum problem variations
 Some common problems that can be solved with two pointer -
 
-1. Check if a string/array of chars is a palindrome
+1. Check if a string/array of chars is a palindrome: https://leetcode.com/problems/valid-palindrome/submissions/1478835793/
 2. Reverse an array in-place
 3. Given a target, find elements (a pair) that sum up to a target ==> 3 sum variation
 
@@ -71,6 +71,7 @@ def twoSum(nums, target):
 
 # This has to be an O(n^2) algorithm due to its inherent complexity
 # Given a sorted array, find a triplet that sums up to a target
+# Leetcode link: https://leetcode.com/problems/3sum/
 def threeSum(nums, target):
     for k in range(len(nums)):
         i, j, modified_target = k+1, len(nums)-1, target-nums[k]
