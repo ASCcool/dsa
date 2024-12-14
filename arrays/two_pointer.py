@@ -41,6 +41,18 @@ def ternary_separator(colors):
         end -= 1
     return colors
 
+def twoSumWithoutSorting(self, nums: List[int], target: int) -> List[int]:
+    i, n = 0, len(nums)
+    mp = {}
+    while i < n:
+        find = target - nums[i]
+        if find in mp:
+            return [min(i, mp[find]), max(i, mp[find])]
+        else:
+            mp[nums[i]] = i
+            i += 1
+    return [-1, -1]
+
 # Given a sorted array, find a pair that sums up to a target
 def twoSum(nums, target):
     i, j = 0, len(nums)-1
