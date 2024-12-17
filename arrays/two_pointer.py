@@ -89,6 +89,26 @@ def threeSum(nums, target):
     print("No pairs found")
     return -1, -1, -1
 
+# Problem link: https://leetcode.com/problems/container-with-most-water/
+def maxWaterInContainer(height):
+    """
+    :type height: List[int]
+    :rtype: int
+    """
+    n = len(height)
+    low, high = 0, n-1
+    water = 0
+    curr = 0
+    while low<=high:
+        curr = min(height[low], height[high])*abs((high-low))
+        if curr >= water:
+            water = curr
+        if height[low]<height[high]:
+            low += 1
+        else:
+            high -= 1
+    return water
+
 
 if __name__ == "__main__":
     # Example Usage:
@@ -97,3 +117,4 @@ if __name__ == "__main__":
     arr = [0, 0, 1, 3, 12]
     print(twoSum(arr, 13)) # Output: 2, 4
     print(threeSum(arr, 16)) # Output: 2, 3, 4
+    print(maxWaterInContainer([1,8,6,2,5,4,8,3,7])) # Output: 49
