@@ -57,6 +57,34 @@ def longest_consecutive_sequence(nums):
     return longest
 
 
+# Leetcode problem: https://leetcode.com/problems/maximum-tastiness-of-candy-basket/
+# Binary search for "tasty" value and find if atleast k elements in the array satisfy 
+# the min tastiness of "tasty". If found, store it else go for higher or lower value 
+# of tasty accordingly. This is and O(n * log (n)) solution
+class MaxTastinessOfBasket:
+    def findKcandies(self, price, tasty, k):
+        largest = 0
+        count = 1
+        for current in range(1, len(price)):
+            if price[current] - price[largest] >= tasty:
+                largest = current
+                count += 1
+        return count >= k
+    def maximumTastiness(self, price, k):
+        price.sort()  # Sort the prices in ascending order
+        low, high = 0, price[-1] - price[0]
+        tasty = 0
+        # Binary search for the maximum tastiness
+        while low <= high:
+            mid = low + (high - low) // 2
+            if self.findKcandies(price, mid, k):
+                tasty = mid  # Update tastiness if the condition is satisfied
+                low = mid + 1  # Try for a larger tastiness value
+            else:
+                high = mid - 1  # Try for a smaller tastiness value
+        return tasty
+
+
 if __name__ == "__main__":
     nums = [3, 22, 1, 2, 9, 4, 5]
     print(longest_consecutive_subsequence(nums))  # 1, 2 are present
