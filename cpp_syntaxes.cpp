@@ -146,3 +146,59 @@ v1.swap(v2);  // v1 = {4, 5, 6}, v2 = {1, 2, 3}
 // Copy Constructor: Create a copy of a vector.
 vector<int> v1 = {1, 2, 3};
 vector<int> v2(v1);  // v2 = {1, 2, 3}
+
+/********** SET **********/
+
+unordered_set<int> visited;
+
+// Insert in a set
+visited.insert(top->left->val)
+
+// Find element in a set
+visited.find(top->left->val) != visited.end()
+
+// Count occurances of element in a set
+visited.count(key)
+
+/********** MAP **********/
+
+// Almost works same as set commands
+unordered_map<TreeNode*, TreeNode*> parentMap;
+
+/********** QUEUE **********/
+
+queue<TreeNode*> q;
+
+// size
+q.size()
+
+// front
+q.front() -> int
+
+// pop
+q.pop() -> NULL
+
+// push
+q.push(value)
+
+// empty check
+q.empty()
+
+/********** STACK **********/
+
+stack<TreeNode*> s;
+
+// size
+s.size()
+
+// top
+s.top() -> int
+
+// pop
+s.pop() -> NULL
+
+// push
+s.push(value)
+
+// empty check
+s.empty()
