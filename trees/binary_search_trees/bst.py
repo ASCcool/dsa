@@ -183,16 +183,20 @@ class TreeNode:
     def bfs(node):
         queue = [node]
         bfs = []
+        level = 1
         while len(queue) > 0:
-            n = len(queue)
+            n = len(queue) # Queue size for current level
+            print("Level:", level)
             while n > 0:
                 top = queue.pop(0)
+                print(top.value)
                 bfs.append(top.value)
                 n -= 1
                 if top.left:
                     queue.append(top.left)
                 if top.right:
                     queue.append(top.right)
+            level += 1
         print("".join(str(v) + "->" for v in bfs)[:-2])
 
 
