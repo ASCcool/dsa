@@ -178,6 +178,22 @@ class TreeNode:
             root.value = ipre.value
             root.left = TreeNode.delete_node(root.left, ipre.value)
             return root
+    
+    @staticmethod
+    def bfs(node):
+        queue = [node]
+        bfs = []
+        while len(queue) > 0:
+            n = len(queue)
+            while n > 0:
+                top = queue.pop(0)
+                bfs.append(top.value)
+                n -= 1
+                if top.left:
+                    queue.append(top.left)
+                if top.right:
+                    queue.append(top.right)
+        print("".join(str(v) + "->" for v in bfs)[:-2])
 
 
 if __name__ == "__main__":
@@ -202,6 +218,9 @@ if __name__ == "__main__":
     # Check if the tree is a BST
     print("The tree is a BST:", TreeNode.is_bst(root))
     print("The tree is a BST:", TreeNode.is_bst_in_order_traversal_check(root))
+
+    # BFS / level-order traversal 
+    TreeNode.bfs(root)
 
     # Searching for a particular key
     key = 20
