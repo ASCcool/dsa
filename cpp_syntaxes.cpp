@@ -58,6 +58,8 @@ v.push_back(10);  // v = {10}
 // emplace_back(value): Constructs and adds an element at the end of the vector in place (avoids copying).
 v.emplace_back(20);  // v = {10, 20}
 
+vector<int> v(n, -1); // initialize a vector if size n with -1 as default
+
 //********** 2. Removing Elements **********//
 
 // pop_back(): Removes the last element of the vector.
