@@ -38,6 +38,7 @@ def ternary_separator(colors):
         current += 1
       else:
         colors[current], colors[end] = colors[end], colors[current]
+        # Here only decremented end because you still have to assess whether current is 0 or 1 after swapping
         end -= 1
     return colors
 
