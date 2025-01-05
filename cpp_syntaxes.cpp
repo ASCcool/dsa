@@ -1,3 +1,6 @@
+//************ Full list of commands per data structure in STL: 
+//************ https://takeuforward.org/c/c-stl-tutorial-most-frequent-used-stl-containers/
+
 #include <iostream> // for cout etc
 #include <string> // for string
 #include <cctype> // for tolower and isalnum
