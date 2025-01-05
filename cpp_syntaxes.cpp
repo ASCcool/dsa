@@ -204,3 +204,27 @@ s.push(value)
 
 // empty check
 s.empty()
+
+
+/******** PAIRS ********/
+
+// Sort items in a pair by first element (if you want to sort by second, modify comparator)
+struct KnapsackItem {
+    double ratio;
+    int weight;
+};
+
+// In a class, comparator will have to be static (without this pointer reference)
+static bool comparator(const KnapsackItem& a, const KnapsackItem& b) {
+    return a.ratio > b.ratio; // Descending order
+}
+
+vector<KnapsackItem> items(n);
+
+// Explicitly define compartor 
+sort(items.begin(), items.end(), comparator);
+
+// You can also do it via lambda function
+sort(items.begin(), items.end(), [](const KnapsackItem& a, const KnapsackItem& b) {
+    return a.ratio > b.ratio;
+});
