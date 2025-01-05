@@ -18,3 +18,8 @@ use OrderedDict/dict (Python 3.7+) and just get the keys
 # Add items to a set in python
 s = set()
 s.add(2)
+# Remove items
+s.remove(2)
+
+# Sort arr1 based on the order of arr2
+sorted_arr1 = [x for _, x in sorted(zip(arr2, arr1))]
