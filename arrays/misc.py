@@ -1,3 +1,5 @@
+from collections import defaultdict
+
 def longest_consecutive_subsequence(nums):
     """
     Sliding Window Approach to find the Longest Consecutive Subsequence:
@@ -83,6 +85,42 @@ class MaxTastinessOfBasket:
             else:
                 high = mid - 1  # Try for a smaller tastiness value
         return tasty
+
+# Build employee manager hierarchy
+'''
+***** Input (list of employee and corresponding manager pairs): ***** 
+pairs = [("A", "C"), ("B", "C"), ("C", "F"), ("D", "E"), ("E", "F"), ("F", "F")] # F is the CEO, he reports to himself
+
+***** Output (hierarchy json): ***** 
+{
+    "F": {
+        "C": {
+            "A": [],
+            "B": []
+        },
+        "E": {
+            "D": []
+        }
+    }
+}
+'''
+def build_hierarchy(pairs):
+    # Step 1: Build a manager-employee mapping
+    tree = defaultdict(list)
+    ceo = None
+    for employee, manager in pairs:
+        if employee == manager:
+            ceo = employee  # CEO reports to themselves
+        else:
+            tree[manager].append(employee)
+    # Step 2: Recursively build the hierarchy
+    def build_tree(manager):
+        if manager not in tree:
+            return []
+        return {employee: build_tree(employee) for employee in tree[manager]}
+    # Step 3: Start building the hierarchy from the CEO
+    hierarchy = {ceo: build_tree(ceo)}
+    return hierarchy
 
 
 if __name__ == "__main__":
