@@ -231,3 +231,11 @@ sort(items.begin(), items.end(), comparator);
 sort(items.begin(), items.end(), [](const KnapsackItem& a, const KnapsackItem& b) {
     return a.ratio > b.ratio;
 });
+
+/******** PRIORITY QUEUES ********/
+
+// Build a maxHeap
+priority_queue<int, vector<int>> maxHeap(nums.begin(), nums.end());
+
+// Build a minHeap
+priority_queue<int, vector<int>, greater<int>> minHeap(nums.begin(), nums.end());
